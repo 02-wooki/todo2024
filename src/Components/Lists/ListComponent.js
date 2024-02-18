@@ -10,7 +10,7 @@ export default function ListComponent() {
 
     return(
         <>
-            {lists.map((list) => <TodoList key={list.id} check={list.check} content={list.content} />)}
+            {lists.map((list) => <TodoList key={list.id} id={list.id} check={list.check} content={list.content} />)}
         </>
     );
 }

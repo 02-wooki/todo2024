@@ -5,6 +5,7 @@
     }
 
     h1 {
+        margin-bottom: 40px;
         font-size: 2rem;
         font-weight: 800;
         color: #444;
@@ -12,6 +13,7 @@
     }
 
     .inputForm {
+        margin-top: 10px;
         border: 2px solid #ddd;
         border-radius: 20px;
         padding: 10px 20px;
@@ -24,7 +26,7 @@
 
     .inputForm:focus {
         outline: none;
-        border: 2px solid #78e;
+        border: 2px solid #eadebe;
         transition: 200ms;
     }
     .inputForm:focus::placeholder {
@@ -43,32 +45,48 @@
     .inputForm:focus + #submitIcon {
         height: 42px; width: 42px;
         left: 505px; top: -43px;
-        background-color: #78e;
+        background-color: #eadebe;
         rotate: 90deg;
         transition: all ease 300ms;
         cursor: pointer;
     }
 
+    .aList {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
     label {
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-bottom: 15px;
         cursor: pointer;
     }
-    label input {
+    .nonchecked {
         height: 30px; width: 30px;
         border-radius: 15px;
-        appearance: none;
         box-shadow: 0 0 10px -5px #665e46;
-        cursor: pointer;
+        color: #fff;
     }
-    label input:checked {
-        background-color: #444;
+    .checked {
+        margin-left: 10px;
+        height: 30px; width: 30px;
+        border-radius: 15px;
+        background-color: #555;
+        box-shadow: 0 0 10px -5px #665e46;
+        color: #fff;
     }
-    label div {
+    label > div {
+        margin-left: 10px;
         color: #555;
         font-weight: 900;
         font-size: 1.1rem;
+    }
+    .listIcon {
+        margin-right: 10px;
+        color: #aaa;
+        cursor: pointer;
     }
 }
