@@ -1,0 +1,72 @@
+@media (min-width: 760px) {
+
+    .profile-pic {
+        position: absolute;
+        left: 55px;
+        top: 55px;
+        width: 90px;
+        height: 90px;
+        z-index: 1;
+        border-radius: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .div-modal {
+        position: absolute;
+        left: 40px; top: 40px;
+        width: 120px; height: 120px;
+        z-index: 0;
+        background-color: #F3EEE0;
+        border-radius: 60px;
+        box-shadow: 0 0 10px -5px;
+        transition: all ease 300ms;
+    }
+
+    #modalopen-profileback {
+        position: absolute;
+        left: 40px; top: 40px;
+        width: 120px; height: 330px;
+        z-index: 0;
+        background-color: #F3EEE0;
+        border-radius: 60px;
+        box-shadow: 0 0 10px -5px;
+    }
+
+    #settings-icon {
+        position: absolute;
+        left: 40px; top: 160px;
+    }
+
+    #logout-icon {
+        position: absolute;
+        left: 36px; top: 235px;
+    }
+
+    .icon-oncursor {
+        display: flex;
+        position: absolute;
+        left: 62px;
+        width: 80px; height: 80px;
+        background-color: #FFF;
+        border-radius: 40px;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        font-weight: 800;
+        color: #444;
+        box-shadow: inset 0 0 10px -6px;
+        cursor: pointer;
+        opacity: 0%;
+    }
+    .icon-oncursor:hover {
+        opacity: 100%;
+        transition: all ease 350ms;
+    }
+    #settings-oncursor {
+        top: 182px;
+    }
+    #logout-oncursor {
+        top: 257px;
+    }
+}
