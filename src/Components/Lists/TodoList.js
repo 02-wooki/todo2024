@@ -8,10 +8,16 @@ export default function TodoList(props) {
     const deleteHandler = () => {
         console.log('delete', props.id);
     }
+    
+    const boxCheckHandler = () => {
+        setBoxChecked(!boxChecked);
+    }
+    
+    console.log(props.id, boxChecked);
 
     return(
         <div className="aList">
-            <label onClick={() => setBoxChecked(!boxChecked)}>
+            <label onClick={boxCheckHandler}>
                 {boxChecked ?
                     <BiCheck className="checked" /> :
                     <div className="nonchecked" />
