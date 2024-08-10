@@ -1,4 +1,4 @@
-@media (min-width: 760px) {
+@media (min-width: 950px) {
 
     .profile-pic {
         position: absolute;
@@ -48,20 +48,24 @@
         position: absolute;
         left: 62px;
         width: 80px; height: 80px;
+
         background-color: #FFF;
         border-radius: 40px;
+
         align-items: center;
         justify-content: center;
         z-index: 2;
-        font-weight: 800;
+
+        font-weight: 600;
         color: #444;
+
         box-shadow: inset 0 0 10px -6px;
         cursor: pointer;
         opacity: 0%;
     }
     .icon-oncursor:hover {
         opacity: 100%;
-        transition: all ease 350ms;
+        transition: all ease 300ms;
     }
     #settings-oncursor {
         top: 182px;

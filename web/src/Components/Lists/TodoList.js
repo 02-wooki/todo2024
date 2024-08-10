@@ -1,30 +1,35 @@
 import React, { useState } from "react";
-import { BiCheck, BiX } from "react-icons/bi";
+import { BiCheck, BiPencil, BiTrash } from "react-icons/bi";
 
 export default function TodoList(props) {
 
-    const [boxChecked, setBoxChecked] = useState(props.check);
+    const [modifying, setModifying] = useState(false);
 
     const deleteHandler = () => {
-        console.log('delete', props.id);
+        props.removeHandler(props.id);
     }
     
-    const boxCheckHandler = () => {
-        setBoxChecked(!boxChecked);
+    const checkHandler = () => {
+        props.checkHandler(props.id);
     }
-    
-    console.log(props.id, boxChecked);
+
+    const modifyHandler = () => {
+        
+    }
 
     return(
         <div className="aList">
-            <label onClick={boxCheckHandler}>
-                {boxChecked ?
+            <label onClick={checkHandler}>
+                {props.check ?
                     <BiCheck className="checked" /> :
                     <div className="nonchecked" />
                 }
                 <div>{props.content}</div>
             </label>
-            <BiX className="listIcon" size={21} onClick={deleteHandler}/>
+            <div className="icons">
+                <BiPencil className="listIcon" size={21} onClick={modifyHandler}/>
+                <BiTrash className="listIcon" size={21} onClick={deleteHandler}/>
+            </div>
         </div>
     );
 }

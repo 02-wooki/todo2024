@@ -1,7 +1,7 @@
-@media (min-width: 760px) {
+@media (min-width: 950px) {
     * {
         font-size: 1rem;
-        font-weight: 700;
+        font-weight: 500;
     }
 
     h1 {
@@ -13,6 +13,7 @@
     }
 
     .inputForm {
+        height: 20px;
         margin-top: 10px;
         border: 2px solid #ddd;
         border-radius: 20px;
@@ -65,23 +66,22 @@
         cursor: pointer;
     }
     .nonchecked {
-        height: 30px; width: 30px;
+        height: 25px; width: 25px;
         border-radius: 15px;
         box-shadow: 0 0 10px -5px #665e46;
         color: #fff;
     }
     .checked {
         margin-left: 10px;
-        height: 30px; width: 30px;
+        height: 25px; width: 25px;
         border-radius: 15px;
         background-color: #555;
         box-shadow: 0 0 10px -5px #665e46;
         color: #fff;
     }
     label > div {
-        margin-left: 10px;
+        margin-left: 20px;
         color: #555;
-        font-weight: 900;
         font-size: 1.1rem;
     }
     .listIcon {

@@ -2,27 +2,29 @@ import { useState } from 'react';
 import { BiPlus } from 'react-icons/bi';
 import './Main.css'
 
-export default function Input() {
+export default function Input(props) {
 
-    const [newList, setNewList] = useState('');
+    const [newListContent, setNewListContent] = useState('');
 
-    const handleSubmit = () => {
-        console.log(newList);
-        setNewList('');
-    }
     const handleEnterKey = (e) => {
         if(e.key === 'Enter') {
             handleSubmit();
         }
     }
-
+    const handleSubmit = () => {
+        if (newListContent.length !== 0) {
+            props.pushHandler(newListContent);
+            setNewListContent('');
+        }
+    }
+            
     return (
         <>
             <input
                 className='inputForm'
                 placeholder='오늘의 할 일은?'
-                value={newList}
-                onChange={(e) => setNewList(e.target.value)}
+                value={newListContent}
+                onChange={(e) => setNewListContent(e.target.value)}
                 onKeyUp={handleEnterKey}
             />
             <BiPlus 
