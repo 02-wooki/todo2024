@@ -36,7 +36,7 @@
     #submitIcon {
         position: relative;
         height: 36px; width: 36px;
-        left: 460px; top: -40px;
+        left: 560px; top: -40px;
         background-color: #ddd;
         border-radius: 40px;
         transition: all ease 300ms;
@@ -44,7 +44,7 @@
 
     .inputForm:focus + #submitIcon {
         height: 42px; width: 42px;
-        left: 505px; top: -43px;
+        left: 605px; top: -43px;
         background-color: #eadebe;
         rotate: 90deg;
         transition: all ease 300ms;

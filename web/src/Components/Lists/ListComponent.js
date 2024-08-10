@@ -6,7 +6,7 @@ export default function ListComponent() {
     const lists = [
         {id: 1, check: false, content: '제육 고기 사기'},
         {id: 2, check: true, content: '화장실 청소하기'},
-	{id: 3, check: false, content: '스프링부트 배우기'}
+	    {id: 3, check: false, content: '스프링부트 배우기'}
     ];
 
     return(
