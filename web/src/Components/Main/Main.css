@@ -1,10 +1,14 @@
 @media (min-width: 950px) {
     h1 {
-        margin-bottom: 40px;
+        margin-bottom: 40px;    margin-top: 8vh;
         font-size: 2rem;
         font-weight: 800;
         color: #444;
         cursor: default;
+    }
+
+    .listContainer {
+        overflow: scroll;
     }
 
     .inputForm {
@@ -30,9 +34,11 @@
     }
 
     #submitIcon {
-        position: relative;
         height: 36px; width: 36px;
-        left: 560px; top: -40px;
+        margin-top: -40px;
+        margin-left: 560px;
+        margin-bottom: 15vh;
+
         background-color: #ddd;
         border-radius: 40px;
         transition: all ease 300ms;
@@ -40,7 +46,8 @@
 
     .inputForm:focus + #submitIcon {
         height: 42px; width: 42px;
-        left: 605px; top: -43px;
+        margin-top: -42px;
+        margin-left: 603px;
         background-color: #eadebe;
         rotate: 90deg;
         transition: all ease 300ms;
