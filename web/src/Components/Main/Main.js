@@ -40,9 +40,17 @@ export default function Main() {
         nextId.current += 1;
     }
 
-    // 멤버 수정하는 함수
+    // 멤버 수정하는 함수 (빈 내용 요청시 삭제)
     const modifyHandler = (id, newContent) => {
-        
+        if (newContent.length !== 0) {
+            setLists(
+                lists.map(list => list.id === id ? {... list, content: newContent} : list)
+            );
+            console.log(newContent + '로 수정됨 (id:' + id + ')');
+        } else {
+            removeHandler(id);
+            console.log('길이 0 수정 요청으로 인한 삭제 (id:' + id + ')');
+        }
     }
 
     return (

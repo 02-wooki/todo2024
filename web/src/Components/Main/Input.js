@@ -6,12 +6,14 @@ export default function Input(props) {
 
     const [newListContent, setNewListContent] = useState('');
 
-    const handleEnterKey = (e) => {
+    const inputKeyHandler = (e) => {
         if(e.key === 'Enter') {
-            handleSubmit();
+            submitHandler();
+        } else if(e.key === 'Escape') {
+            setNewListContent('');
         }
     }
-    const handleSubmit = () => {
+    const submitHandler = () => {
         if (newListContent.length !== 0) {
             props.pushHandler(newListContent);
             setNewListContent('');
@@ -25,13 +27,13 @@ export default function Input(props) {
                 placeholder='오늘의 할 일은?'
                 value={newListContent}
                 onChange={(e) => setNewListContent(e.target.value)}
-                onKeyUp={handleEnterKey}
+                onKeyUp={inputKeyHandler}
             />
             <BiPlus 
                 id='submitIcon'
                 color='#fff'
                 onMouseDown={(e) => {e.preventDefault()}}
-                onClick={handleSubmit}
+                onClick={submitHandler}
             />
         </>
     );

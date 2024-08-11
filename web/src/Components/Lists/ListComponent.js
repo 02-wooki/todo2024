@@ -6,12 +6,13 @@ export default function ListComponent(props) {
     return(
         <>
             {
-                props.lists.map((list) => <TodoList 
+                props.lists.map((list) => <TodoList
                     key={list.id} 
                     id={list.id} 
                     check={list.check}
                     checkHandler={props.checkHandler} 
                     content={list.content} 
+                    modifyHandler={props.modifyHandler}
                     removeHandler={props.removeHandler}/>)
             }
         </>
