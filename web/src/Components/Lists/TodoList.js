@@ -52,6 +52,7 @@ export default function TodoList(props) {
                         value={newContent} 
                         onChange={(e) => setNewContent(e.target.value)}
                         onKeyUp={keyHandler}
+                        onBlur={toggleModifying}
                     /> :
                     <div className="content" onClick={toggleCheck}>{props.content}</div>
                 }

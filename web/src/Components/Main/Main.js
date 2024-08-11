@@ -36,6 +36,7 @@ export default function Main() {
         }
 
         setLists(lists.concat(member));
+        console.log(newContent + ' 할 일 생성됨 (id:' + nextId.current + ')');
 
         nextId.current += 1;
     }
