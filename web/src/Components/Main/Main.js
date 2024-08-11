@@ -12,10 +12,13 @@ export default function Main() {
     const [lists, setLists] = useState([
         {id: 1, check: false, content: '오늘 할 일 적어보기'}
     ]);
+    const [lastRemovedMember, setLastRemoveMember] = useState();
 
     // 목록에서 멤버를 삭제하는 함수
     const removeHandler = (id) => {
+        setLastRemoveMember(lists[id]);
         setLists(lists.filter(list => list.id !== id));
+        console.log('id:' + id + ' 삭제됨');
     };
 
     // 멤버의 체크박스 값을 변경하는 함수
