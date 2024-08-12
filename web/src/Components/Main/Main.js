@@ -2,6 +2,7 @@ import './Main.css'
 import Input from './Input';
 import ListComponent from '../Lists/ListComponent';
 import { useRef, useState } from 'react';
+import ToastNotification from './ToastNotification';
 
 export default function Main() {
 
@@ -12,12 +13,16 @@ export default function Main() {
     const [lists, setLists] = useState([
         {id: 1, check: false, content: '오늘 할 일 적어보기'}
     ]);
-    const [lastRemovedMember, setLastRemoveMember] = useState();
+    const [removedMember, setRemovedMember] = useState([]);
+    const [toastState, setToastState] = useState(false);
 
     // 목록에서 멤버를 삭제하는 함수
     const removeHandler = (id) => {
-        setLastRemoveMember(lists[id]);
+        // id가 매치하는 요소 removedMember 배열로 옮긴 후 삭제
+        setRemovedMember(removedMember.concat(lists.filter(list => list.id === id)));
         setLists(lists.filter(list => list.id !== id));
+
+        setToastState(true);
         console.log('id:' + id + ' 삭제됨');
     };
 
@@ -67,6 +72,8 @@ export default function Main() {
                 modifyHandler={modifyHandler}
             />
             <Input pushHandler={pushHandler} />
+            { toastState ?
+                <ToastNotification setToastState={setToastState} /> : null }
         </>
     );
 }

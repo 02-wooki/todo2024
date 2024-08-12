@@ -1,0 +1,46 @@
+.toastAlertContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 200px;   height: 30px;
+    border-radius: 15px;
+    
+    color: #333;
+    font-size: 0.9rem;
+    background-color: #f4efcb80;
+
+    box-shadow: 1px 1px 5px #716e5c87;
+}
+
+button {
+    border: none;
+
+    color: #5558a5;
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    background-color: #ffffff00;
+}
+button:hover {
+    cursor: pointer;
+}
+button:active {
+    color: #888;
+}
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    } to {
+        transform: translateX(0%);
+    }
+}
+@keyframes slideOut {
+    from {
+        transform: translateX(0%);
+    } to {
+        transform: translateX(200%);
+    }
+}
