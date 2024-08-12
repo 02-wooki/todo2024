@@ -8,12 +8,19 @@
     
     color: #333;
     font-size: 0.9rem;
-    background-color: #f4efcb80;
+    background-color: rgba(255, 253, 234, 0.75);
 
-    box-shadow: 1px 1px 5px #716e5c87;
+    box-shadow: 1px 1px 5px #716e5c3b;
 }
 
-button {
+.openAnimation {
+    animation: slideIn 250ms ease-in-out 0s 1 normal forwards;
+}
+.closeAnimation {
+    animation: slideOut 250ms ease-in-out 0s 1 normal forwards;
+}
+
+.toastAlertContainer button {
     border: none;
 
     color: #5558a5;
@@ -22,25 +29,29 @@ button {
 
     background-color: #ffffff00;
 }
-button:hover {
+.toastAlertContainer button:hover {
     cursor: pointer;
 }
-button:active {
+.toastAlertContainer button:active {
     color: #888;
 }
 
 
 @keyframes slideIn {
     from {
-        transform: translateX(100%);
+        transform: translateY(50%);
+        opacity: 0%;
     } to {
-        transform: translateX(0%);
+        transform: translateY(0%);
+        opacity: 100%;
     }
 }
 @keyframes slideOut {
     from {
-        transform: translateX(0%);
+        transform: translateY(0%);
+        opacity: 500%;
     } to {
-        transform: translateX(200%);
+        transform: translateY(300%);
+        opacity: 0%;
     }
 }

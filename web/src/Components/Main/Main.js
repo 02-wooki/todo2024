@@ -18,13 +18,26 @@ export default function Main() {
 
     // 목록에서 멤버를 삭제하는 함수
     const removeHandler = (id) => {
-        // id가 매치하는 요소 removedMember 배열로 옮긴 후 삭제
+        // id가 매치하는 요소 removedMember로 옮긴 후 삭제
         setRemovedMember(removedMember.concat(lists.filter(list => list.id === id)));
         setLists(lists.filter(list => list.id !== id));
 
         setToastState(true);
         console.log('id:' + id + ' 삭제됨');
     };
+
+    // 삭제 취소
+    const unRemoveHandler = () => {
+
+        removedMember.forEach(list => {
+            pushHandler(list.content);
+            if (list.check)
+                checkHandler(nextId.current - 1);
+        });
+
+        setRemovedMember([]);
+        setToastState(false);
+    }
 
     // 멤버의 체크박스 값을 변경하는 함수
     const checkHandler = (id) => {
@@ -73,7 +86,10 @@ export default function Main() {
             />
             <Input pushHandler={pushHandler} />
             { toastState ?
-                <ToastNotification setToastState={setToastState} /> : null }
+                <ToastNotification
+                    setToastState={setToastState}
+                    unRemoveHandler={unRemoveHandler}
+                /> : null }
         </>
     );
 }
