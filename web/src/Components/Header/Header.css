@@ -105,6 +105,10 @@
     transition: all ease 300ms;
 }
 
+#settings-icon, #logout-icon {
+    cursor: pointer;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0%;
