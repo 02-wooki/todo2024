@@ -1,107 +1,127 @@
-@media (min-width: 950px) {
-    h1 {
-        margin-bottom: 40px;    margin-top: 8vh;
-        font-size: 2rem;
-        font-weight: 800;
-        color: #444;
-        cursor: default;
+h1 {
+    margin-bottom: 40px;    margin-top: 8vh;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #444;
+    cursor: default;
     }
 
-    .listContainer {
-        overflow: scroll;
-    }
-
-    .inputForm {
-        height: 20px;
-        margin-top: 10px;
-        border: 2px solid #ddd;
-        border-radius: 20px;
-        padding: 10px 20px;
-        transition: 200ms;
-        color: #555;
-    }
-    .inputForm::placeholder {
-        color: #aaa;
-    }
-
-    .inputForm:focus {
-        outline: none;
-        border: 2px solid #eadebe;
-        transition: 200ms;
-    }
-    .inputForm:focus::placeholder {
-        opacity: 0%;
-    }
-
+@media portrait, (max-width: 1024px) and (min-width: 768px) {
     #submitIcon {
-        height: 36px; width: 36px;
-        margin-top: -40px;
-        margin-left: 560px;
-        margin-bottom: 15vh;
-
-        background-color: #ddd;
-        border-radius: 40px;
-        transition: all ease 300ms;
+        margin-left: 460px;
     }
-
     .inputForm:focus + #submitIcon {
-        height: 42px; width: 42px;
-        margin-top: -42px;
-        margin-left: 603px;
-        background-color: #eadebe;
-        rotate: 90deg;
-        transition: all ease 300ms;
-        cursor: pointer;
+        margin-left: 503px;
     }
 
-    .aList {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 15px;
-    }
-    label {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        cursor: pointer;
-    }
-    .nonchecked {
-        margin-left: 10px;
-        height: 25px; width: 25px;
-        border-radius: 15px;
-        box-shadow: 0 0 10px -5px #665e46;
-        color: #fff;
-
-        flex-shrink: 0;
-    }
-    .checked {
-        margin-left: 10px;
-        height: 25px; width: 25px;
-        border-radius: 15px;
-        background-color: #555;
-        box-shadow: 0 0 10px -5px #665e46;
-        color: #fff;
-
-        flex-shrink: 0;
-    }
-    .content {
-        padding: 0px 15px 0px 20px;
-        color: #555;
-        font-size: 1.1rem;
-    }
     #modifyingContent {
-        width: 450px;   
-        outline: none;  border: #fff 2px solid;
-        padding: 0px;   margin-left: 20px;
+        width: 350px;
     }
-    #modifyingContent:focus {
-        border-bottom: #eadebe 2px solid;
+}
+@media (min-width: 1024px) {
+    #submitIcon {
+        margin-left: 560px;
     }
-    .listIcon {
-        margin-right: 10px;
-        color: #aaa;
-        cursor: pointer;
+    .inputForm:focus + #submitIcon {
+        margin-left: 603px;
     }
+
+    #modifyingContent {
+        width: 450px;
+    }
+}
+
+.listContainer {
+    overflow: scroll;
+}
+
+.inputForm {
+    height: 20px;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: 200ms;
+    color: #555;
+}
+.inputForm::placeholder {
+    color: #aaa;
+}
+
+.inputForm:focus {
+    outline: none;
+    border: 2px solid #eadebe;
+    transition: 200ms;
+}
+.inputForm:focus::placeholder {
+    opacity: 0%;
+}
+
+#submitIcon {
+    height: 36px; width: 36px;
+    margin-top: -40px;
+    margin-bottom: 15vh;
+
+    background-color: #ddd;
+    border-radius: 40px;
+    transition: all ease 300ms;
+}
+
+.inputForm:focus + #submitIcon {
+    height: 42px; width: 42px;
+    margin-top: -42px;
+    background-color: #eadebe;
+    rotate: 90deg;
+    transition: all ease 300ms;
+    cursor: pointer;
+}
+
+.aList {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+label {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    cursor: pointer;
+}
+.nonchecked {
+    margin-left: 10px;
+    height: 25px; width: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px -5px #665e46;
+    color: #fff;
+
+    flex-shrink: 0;
+}
+.checked {
+    margin-left: 10px;
+    height: 25px; width: 25px;
+    border-radius: 15px;
+    background-color: #555;
+    box-shadow: 0 0 10px -5px #665e46;
+    color: #fff;
+
+    flex-shrink: 0;
+}
+.content {
+    padding: 0px 15px 0px 20px;
+    color: #555;
+    font-size: 1.1rem;
+}
+#modifyingContent {
+    outline: none;  border: #fff 2px solid;
+    padding: 0px;   margin-left: 20px;
+}
+#modifyingContent:focus {
+    border-bottom: #eadebe 2px solid;
+}
+.listIcon {
+    margin-right: 10px;
+    color: #aaa;
+    cursor: pointer;
 }

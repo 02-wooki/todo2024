@@ -1,4 +1,8 @@
 .toastAlertContainer {
+    position: fixed;
+    bottom: 6vh;
+    left: calc(50vw - 100px);
+
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -8,7 +12,7 @@
     
     color: #333;
     font-size: 0.9rem;
-    background-color: rgba(255, 253, 234, 0.75);
+    background-color: #F3EEE0;
 
     box-shadow: 1px 1px 5px #716e5c3b;
 }
