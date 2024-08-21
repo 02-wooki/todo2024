@@ -60,6 +60,17 @@ export default function Main() {
         console.log(newContent + ' 할 일 생성됨 (id:' + nextId.current + ')');
 
         nextId.current += 1;
+
+        fetch('http://localhost:8080/api/getlist', {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(member)
+        })
+        .then(res => {
+            console.log(res);
+        })
     }
 
     // 멤버 수정하는 함수 (빈 내용 요청시 삭제)
