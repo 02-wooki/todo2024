@@ -11,6 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 mariadb.connect();
+
+// 데이터 DB에 삽입하는 함수
 function pushHandler (body) {
     mariadb.query(`insert into lists(bookId, checked, content) 
         values(${body.bookId}, ${body.check}, '${body.content}')`,
@@ -21,6 +23,7 @@ function pushHandler (body) {
 //     res.sendFile(path.join(__dirname, '../web/build/index.html'));
 // })
 
+// 데이터 삽입 요청 처리
 app.post('/api/putlist', function (req, res) {
     console.log(`${req.body.bookId}: ${req.body.content}`);
     pushHandler(req.body);
@@ -31,17 +34,19 @@ app.post('/api/updatelist', function (req, res) {
     
 })
 
-app.get('api/getlist', function (req, res) {
-    var result;
-    const q = req.query;
-
-    if(q.all) {
+// 데이터 불러오기 요청 처리
+app.get('/api/getlist', function (req, res) {
+    console.log('* get list 요청');
+    if(req.query.all) {
         mariadb.query(`select * from lists`, function (err, rows) {
-            result = rows;
+            if(err) {   // 데이터베이스 오류 예외처리
+                console.log(err);
+            } else {
+                console.log(rows);
+                res.json({ body: rows })
+            }
         })
     }
-
-    res.json({ body : rows });
 })
 
 app.listen(port, () => {
