@@ -41,10 +41,15 @@ export default function Main() {
     const unRemoveHandler = () => {
 
         removedMember.forEach(list => {
-            pushHandler(list.content);
-            if (list.checked)
-                checkHandler(list.bookId);
-        });
+            fetch(`${apiUrl}/api/recovery`, {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify(list)
+            })
+            .then(() => { getList(); });
+        })
 
         setRemovedMember([]);
         setToastState(false);
@@ -52,12 +57,8 @@ export default function Main() {
 
     // 멤버의 체크박스 값을 변경하는 함수
     const checkHandler = (id) => {
-        setLists(
-            lists.map(
-                list => list.bookId === id ? {... list, check: !list.check} : list
-            )
-        );
-        fetch(`${apiUrl}/api/patchlist?id=${id}`, { method : 'PATCH' });
+        fetch(`${apiUrl}/api/patchlist/checkbox?id=${id}`, { method : 'PATCH' })
+        .then(() => { getList(); });
     };
 
     // 데이터 삽입

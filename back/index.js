@@ -18,37 +18,71 @@ function pushHandler (body) {
         values(false, '${body.content}')`,
     function (err, rows) { console.log(rows); });
 }
+function manualPushHandler (body) {
+    console.log(body);
+    const createdDatetime = body.created_at.substr(0, 10) + ' ' + body.created_at.substr(11, 8);
+    const expireDatetime = () => {
+        if (body.expire_at !== null)
+            return ("'" + body.expire_at.substr(0, 10) + ' ' + body.expire_at.substr(11, 8) + "'");
+        else
+            return 'null';
+    } 
+
+    mariadb.query(`insert into lists (bookId, userId, checked, created_at, expire_at, content)
+        values (${body.bookId}, ${body.userId}, ${body.checked}, '${createdDatetime}', ${expireDatetime()}, '${body.content}')`, 
+    function (err, rows) { console.log(err ? err : rows); });
+}
 
 // app.get('/', function (req, res) {
 //     res.sendFile(path.join(__dirname, '../web/build/index.html'));
 // })
 
-// 데이터 삽입 요청 처리
+// 데이터 삽입 요청
 app.post('/api/addlist', function (req, res) {
 
-    console.log('add list 요청');
+    console.log('* add list 요청');
 
     // 길이 0 예외처리
     if (req.body.content.length !== 0) {
-        console.log(`${req.body.content}`);
         pushHandler(req.body);
-        res.send({ body : 'OK' });
+        res.json({ body : 'OK' });
     } else {
         res.json({ body : 'length 0 content requested: NOT OK' });
     }
 })
 
-app.patch('/api/updatelist/', function (req, res) {
-    
+// 삭제 취소 요청
+app.post('/api/recovery', function (req, res) {
+
+    console.log('* recovery 요청');
+    manualPushHandler(req.body);
+
+    res.json({ body : 'OK' });
+})
+
+app.patch('/api/patchlist/:where', function (req, res) {
+    if (req.params.where === 'checkbox') {
+        console.log('* check 상태 변경 요청');
+        mariadb.query(`select checked from lists where bookId=${req.query.id}`, function (err, rows) {
+            mariadb.query(`update lists set checked=${rows[0].checked === 0 ? true : false} where bookId=${req.query.id}`, function (err, rows) {
+                console.log(rows);
+                res.json({ body : 'OK' });
+            })
+        })
+    } else if (req.params.where === 'content') {
+
+    }
 })
 
 app.delete(`/api/removelist/:who`, function (req, res) {
     if (req.params.who === 'book') {
+        console.log('* remove list 요청');
         mariadb.query(`delete from lists where bookId=${req.query.id}`, function (err, rows) {
             if(err) {
                 console.log(err);
             } else {
                 console.log(rows);
+                res.json({ body : 'OK' });
             }
         })
     } else if (req.params.who === 'user') {
@@ -56,7 +90,7 @@ app.delete(`/api/removelist/:who`, function (req, res) {
     }
 })
 
-// 데이터 불러오기 요청 처리
+// 데이터 불러오기 요청
 app.get('/api/getlist', function (req, res) {
     console.log('* get list 요청');
     if(req.query.id === 'all') {
