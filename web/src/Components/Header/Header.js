@@ -1,7 +1,6 @@
 import './Header.css'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { BiPlusCircle, BiLogOut, BiCog } from "react-icons/bi";
+import { BiLogOut, BiCog } from "react-icons/bi";
 
 
 export default function Header() {

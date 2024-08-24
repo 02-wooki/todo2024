@@ -1,7 +1,7 @@
 import './Main.css'
 import Input from './Input';
 import ListComponent from '../Lists/ListComponent';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ToastNotification from './ToastNotification';
 
 export default function Main() {
@@ -77,7 +77,7 @@ export default function Main() {
     const modifyHandler = (id, newContent) => {
         if (newContent.length !== 0) {
             setLists(
-                lists.map(list => list.bookId === id ? {... list, content: newContent} : list)
+                lists.map(list => list.bookId === id ? {...list, content: newContent} : list)
             );
             console.log(newContent + '로 수정됨 (id:' + id + ')');
         } else {

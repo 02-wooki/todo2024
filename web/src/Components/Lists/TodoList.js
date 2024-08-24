@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { BiCheck, BiPencil, BiTrash } from "react-icons/bi";
 
 export default function TodoList(props) {
@@ -22,9 +22,9 @@ export default function TodoList(props) {
     }
 
     const keyHandler = (e) => {
-        if (e.key == 'Escape')
+        if (e.key === 'Escape')
             toggleModifying();
-        else if (e.key == 'Enter') {
+        else if (e.key === 'Enter') {
             modifySubmitHandler();
         }
     }
