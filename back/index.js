@@ -24,14 +24,36 @@ function pushHandler (body) {
 // })
 
 // 데이터 삽입 요청 처리
-app.post('/api/putlist', function (req, res) {
-    console.log(`${req.body.bookId}: ${req.body.content}`);
-    pushHandler(req.body);
-    res.json({ body : 'OK' });
+app.post('/api/addlist', function (req, res) {
+
+    console.log('add list 요청');
+
+    // 길이 0 예외처리
+    if (req.body.content.length !== 0) {
+        console.log(`${req.body.content}`);
+        pushHandler(req.body);
+        res.send({ body : 'OK' });
+    } else {
+        res.json({ body : 'length 0 content requested: NOT OK' });
+    }
 })
 
-app.post('/api/updatelist', function (req, res) {
+app.patch('/api/updatelist/', function (req, res) {
     
+})
+
+app.delete(`/api/removelist/:who`, function (req, res) {
+    if (req.params.who === 'book') {
+        mariadb.query(`delete from lists where bookId=${req.query.id}`, function (err, rows) {
+            if(err) {
+                console.log(err);
+            } else {
+                console.log(rows);
+            }
+        })
+    } else if (req.params.who === 'user') {
+        // 회원 탈퇴
+    }
 })
 
 // 데이터 불러오기 요청 처리
