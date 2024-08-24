@@ -6,7 +6,7 @@ import ToastNotification from './ToastNotification';
 
 export default function Main() {
 
-    const apiUrl = 'http://localhost:8080';
+    const apiUrl = 'http://todo.woowowoki.monster';
 
     // 할일 목록 배열
     const [lists, setLists] = useState([]);
