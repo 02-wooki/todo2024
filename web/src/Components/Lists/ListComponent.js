@@ -7,9 +7,9 @@ export default function ListComponent(props) {
         <>
             {
                 props.lists.map((list) => <TodoList
-                    key={list.id} 
-                    id={list.id} 
-                    check={list.check}
+                    key={list.bookId} 
+                    id={list.bookId} 
+                    check={list.checked}
                     checkHandler={props.checkHandler} 
                     content={list.content} 
                     modifyHandler={props.modifyHandler}
