@@ -14,8 +14,8 @@ mariadb.connect();
 
 // 데이터 DB에 삽입하는 함수
 function pushHandler (body) {
-    mariadb.query(`insert into lists(bookId, checked, content) 
-        values(${body.bookId}, ${body.check}, '${body.content}')`,
+    mariadb.query(`insert into lists(checked, content) 
+        values(false, '${body.content}')`,
     function (err, rows) { console.log(rows); });
 }
 
@@ -37,8 +37,18 @@ app.post('/api/updatelist', function (req, res) {
 // 데이터 불러오기 요청 처리
 app.get('/api/getlist', function (req, res) {
     console.log('* get list 요청');
-    if(req.query.all) {
+    if(req.query.id === 'all') {
         mariadb.query(`select * from lists`, function (err, rows) {
+            if(err) {   // 데이터베이스 오류 예외처리
+                console.log(err);
+            } else {
+                console.log(rows);
+                res.json({ body: rows })
+            }
+        })
+    } else {
+        const bookId = req.query.id;
+        mariadb.query(`select * from lists where bookId=${bookId}`, function (err, rows) {
             if(err) {   // 데이터베이스 오류 예외처리
                 console.log(err);
             } else {
