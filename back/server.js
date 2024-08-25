@@ -14,42 +14,11 @@ mariadb.connect();
 // get
 const getlists = require('./controllers/get/getlists');
 
+// post
+const addlist = require('./controllers/post/addlist');
+
 app.get('/api/getlist', getlists);
-
-// 데이터 DB에 삽입하는 함수
-function pushHandler (body) {
-    mariadb.query(`insert into lists(checked, content) 
-        values(false, '${body.content}')`,
-    function (err, rows) { console.log(rows); });
-}
-function manualPushHandler (body) {
-    console.log(body);
-    const createdDatetime = body.created_at.substr(0, 10) + ' ' + body.created_at.substr(11, 8);
-    const expireDatetime = () => {
-        if (body.expire_at !== null)
-            return ("'" + body.expire_at.substr(0, 10) + ' ' + body.expire_at.substr(11, 8) + "'");
-        else
-            return 'null';
-    } 
-
-    mariadb.query(`insert into lists (bookId, userId, checked, created_at, expire_at, content)
-        values (${body.bookId}, ${body.userId}, ${body.checked}, '${createdDatetime}', ${expireDatetime()}, '${body.content}')`, 
-    function (err, rows) { console.log(err ? err : rows); });
-}
-
-// 데이터 삽입 요청
-app.post('/api/addlist', function (req, res) {
-
-    console.log('* add list 요청');
-
-    // 길이 0 예외처리
-    if (req.body.content.length !== 0) {
-        pushHandler(req.body);
-        res.json({ body : 'OK' });
-    } else {
-        res.json({ body : 'length 0 content requested: NOT OK' });
-    }
-})
+app.post('/api/addlist', addlist);
 
 // 삭제 취소 요청
 app.post('/api/recovery', function (req, res) {
