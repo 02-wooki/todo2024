@@ -6,7 +6,6 @@ const mariadb = require('./database/mariadb');
 const app = express();
 const port = 8080;
 
-app.use(express.static(path.join(__dirname, '../web/build')));
 app.use(cors());
 app.use(express.json());
 
@@ -32,10 +31,6 @@ function manualPushHandler (body) {
         values (${body.bookId}, ${body.userId}, ${body.checked}, '${createdDatetime}', ${expireDatetime()}, '${body.content}')`, 
     function (err, rows) { console.log(err ? err : rows); });
 }
-
-// app.get('/', function (req, res) {
-//     res.sendFile(path.join(__dirname, '../web/build/index.html'));
-// })
 
 // 데이터 삽입 요청
 app.post('/api/addlist', function (req, res) {
