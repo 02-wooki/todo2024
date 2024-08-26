@@ -9,7 +9,7 @@ const getlist = async (req, res) => {
                 res.send({ body : { status : 'OK', content : rows } });
         });
     } else {
-        mariadb.query(`select * from lists where bookId=${req.query.id};`, (err, rows) => {
+        mariadb.query(`select * from lists where userId=${req.query.id};`, (err, rows) => {
             if (err)
                 res.send({ body : { status : 'NOT OK' } });
             else
