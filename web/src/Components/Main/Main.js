@@ -4,10 +4,10 @@ import ListComponent from '../Lists/ListComponent';
 import { useEffect, useState } from 'react';
 import ToastNotification from './ToastNotification';
 
-export default function Main() {
+// api 주소 노출 방지를 위해 모듈화
+import apiUrl from '../../apiurl';
 
-    const apiUrl = 'https://todo.woowowoki.monster';
-    // const apiUrl = 'http://localhost:8080';
+export default function Main() {
 
     // 할일 목록 배열
     const [lists, setLists] = useState([]);

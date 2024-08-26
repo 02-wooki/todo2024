@@ -1,5 +1,8 @@
 # DB 접속 모듈
 /back/database/mariadb.js
 
+# API url 모듈
+/web/src/apiurl.js
+
 # DS_store
 .DS_Store

@@ -2,6 +2,7 @@ import './Header.css'
 import { useState } from 'react';
 import { BiLogOut, BiCog } from "react-icons/bi";
 
+import mulkong_pigtail from '../../images/mulkong_pigtail.jpg'
 
 export default function Header() {
 
@@ -22,7 +23,7 @@ export default function Header() {
         <div className='header'>
             <img
                 className={'profile-pic' + modalState}
-                src="https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg"
+                src={mulkong_pigtail}
                 onMouseEnter={() => modalOpenHandler(true)}
                 onClick={() => console.log('profile')}
             />
