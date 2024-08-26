@@ -6,7 +6,8 @@ import ToastNotification from './ToastNotification';
 
 export default function Main() {
 
-    const apiUrl = 'https://todo.woowowoki.monster';
+    // const apiUrl = 'https://todo.woowowoki.monster';
+    const apiUrl = 'http://localhost:8080';
 
     // 할일 목록 배열
     const [lists, setLists] = useState([]);
@@ -16,8 +17,9 @@ export default function Main() {
         fetch(`${apiUrl}/api/getlist?id=all`)
         .then(res => res.json())
         .then(res => {
-            setLists(res.body);
-        })
+            if (res.body.status === 'OK')
+                setLists(res.body.content);
+        });
     }
 
     // 최초 실행 시 투두 내용 받아오기
@@ -28,11 +30,13 @@ export default function Main() {
 
     // 삭제
     const removeHandler = (id) => {
-        // id가 매치하는 요소 removedMember로 옮긴 후 삭제
-        setRemovedMember(removedMember.concat(lists.filter(list => list.bookId === id)));
         
         fetch(`${apiUrl}/api/removelist/book?id=${id}`, { method : 'DELETE' })
-        .then(() => { getList(); });
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                setLists(res.body.content);
+        });
 
         setToastState(true);
     };
@@ -40,16 +44,12 @@ export default function Main() {
     // 삭제 취소
     const unRemoveHandler = () => {
 
-        removedMember.forEach(list => {
-            fetch(`${apiUrl}/api/recovery`, {
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                body : JSON.stringify(list)
-            })
-            .then(() => { getList(); });
-        })
+        fetch(`${apiUrl}/api/recovery`)
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                setLists(res.body.content);
+        });
 
         setRemovedMember([]);
         setToastState(false);
@@ -58,7 +58,11 @@ export default function Main() {
     // 멤버의 체크박스 값을 변경하는 함수
     const checkHandler = (id) => {
         fetch(`${apiUrl}/api/patchlist/checkbox?id=${id}`, { method : 'PATCH' })
-        .then(() => { getList(); });
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                setLists(res.body.content);
+        });
     };
 
     // 데이터 삽입
@@ -70,20 +74,19 @@ export default function Main() {
             },
             body : JSON.stringify({ content: newContent })
         })
-        .then(() => { getList(); });
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                setLists(res.body.content);
+        });
     }
 
     // 멤버 수정하는 함수 (빈 내용 요청시 삭제)
     const modifyHandler = (id, newContent) => {
-        if (newContent.length !== 0) {
-            setLists(
-                lists.map(list => list.bookId === id ? {...list, content: newContent} : list)
-            );
-            console.log(newContent + '로 수정됨 (id:' + id + ')');
-        } else {
+        if (newContent.length !== 0)
+            console.log('수정 요청');
+        else
             removeHandler(id);
-            console.log('길이 0 수정으로 인한 삭제 (id:' + id + ')');
-        }
     }
 
     return (
