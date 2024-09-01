@@ -4,7 +4,7 @@ import ListComponent from '../Lists/ListComponent';
 import { useEffect, useState } from 'react';
 import ToastNotification from './ToastNotification';
 
-import { getlist, removelist } from '../../modules/todoapi';
+import { checkboxmodify, getlist, recoverylist, removelist } from '../../modules/todoapi';
 
 // api 주소 노출 방지를 위해 모듈화
 import apiUrl from '../../apiurl';
@@ -13,7 +13,6 @@ export default function Main() {
 
     // 할일 목록 배열
     const [lists, setLists] = useState([]);
-    const [removedMember, setRemovedMember] = useState([]);
     const [toastState, setToastState] = useState(false);
 
     // 최초 실행 시 내용 받아오기
@@ -36,25 +35,22 @@ export default function Main() {
     // 삭제 취소
     const unRemoveHandler = () => {
 
-        fetch(`${apiUrl}/api/recovery`)
-        .then(res => res.json())
-        .then(res => {
-            if (res.body.status === 'OK')
-                setLists(res.body.content);
-        });
+        recoverylist()
+            .then((value => { setLists(value); }));
 
-        setRemovedMember([]);
         setToastState(false);
     }
 
     // 멤버의 체크박스 값을 변경하는 함수
     const checkHandler = (id) => {
-        fetch(`${apiUrl}/api/patchlist/checkbox?id=${id}`, { method : 'PATCH' })
-        .then(res => res.json())
-        .then(res => {
-            if (res.body.status === 'OK')
-                setLists(res.body.content);
-        });
+
+        setLists(
+            lists.map(list => 
+                list.bookId === id ? { ...list, checked : !list.checked } : list
+        ));
+
+        checkboxmodify(id, lists.find(list => list.bookId === id).checked)
+
     };
 
     // 데이터 삽입
