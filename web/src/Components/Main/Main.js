@@ -67,10 +67,16 @@ export default function Main() {
 
     // 멤버 수정하는 함수 (빈 내용 요청시 삭제)
     const modifyHandler = (id, newContent) => {
-        if (newContent.length !== 0)
+        if (newContent.length !== 0) {
+
+            setLists(
+                lists.map(list =>
+                    list.bookId === id ? { ...list, content : newContent} : list
+            ));
+
             contentmodify(id, newContent)
                 .then(value => { setLists(value); });
-        else
+        } else
             removeHandler(id);
     }
 
