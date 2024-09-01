@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/todo2024/static/css/main.a3fa2ce4.css",
-    "main.js": "/todo2024/static/js/main.fbe789b2.js",
+    "main.js": "/todo2024/static/js/main.a324dc1a.js",
     "static/js/787.db8e8795.chunk.js": "/todo2024/static/js/787.db8e8795.chunk.js",
     "static/media/mulkong_pigtail.jpg": "/todo2024/static/media/mulkong_pigtail.f3c17e9f5ef4cd5fa8f6.jpg",
     "index.html": "/todo2024/index.html",
     "main.a3fa2ce4.css.map": "/todo2024/static/css/main.a3fa2ce4.css.map",
-    "main.fbe789b2.js.map": "/todo2024/static/js/main.fbe789b2.js.map",
+    "main.a324dc1a.js.map": "/todo2024/static/js/main.a324dc1a.js.map",
     "787.db8e8795.chunk.js.map": "/todo2024/static/js/787.db8e8795.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a3fa2ce4.css",
-    "static/js/main.fbe789b2.js"
+    "static/js/main.a324dc1a.js"
   ]
 }
