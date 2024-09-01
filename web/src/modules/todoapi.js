@@ -35,11 +35,11 @@ const recoverylist = async () => {
     var content;
     
     await fetch(`${apiUrl}/api/recovery`)
-    .then(res => res.json())
-    .then(res => {
-        if (res.body.status === 'OK')
-            content = res.body.content;
-    });
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                content = res.body.content;
+        });
 
     return content;
 }
@@ -70,14 +70,35 @@ const addlist = async (newContent) => {
         },
         body : JSON.stringify({ content: newContent })
     })
-    .then(res => res.json())
-    .then(res => {
-        if (res.body.status === 'OK')
-            content = res.body.content;
-    });
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                content = res.body.content;
+        });
+
+    return content;
+}
+
+// [patch] 내용 변경
+const contentmodify = async (id, newContent) => {
+    
+    var content;
+    
+    await fetch(`${apiUrl}/api/patchlist/content?id=${id}`, {
+        method : 'PATCH',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({ content : newContent})
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                content = res.body.content;
+        });
 
     return content;
 }
 
 
-export { getlist, removelist, recoverylist, checkboxmodify, addlist };
+export { getlist, removelist, recoverylist, checkboxmodify, addlist, contentmodify };

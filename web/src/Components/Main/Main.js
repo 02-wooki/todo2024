@@ -4,7 +4,7 @@ import ListComponent from '../Lists/ListComponent';
 import { useEffect, useState } from 'react';
 import ToastNotification from './ToastNotification';
 
-import { addlist, checkboxmodify, getlist, recoverylist, removelist } from '../../modules/todoapi';
+import { addlist, checkboxmodify, contentmodify, getlist, recoverylist, removelist } from '../../modules/todoapi';
 
 // api 주소 노출 방지를 위해 모듈화
 import apiUrl from '../../apiurl';
@@ -68,7 +68,8 @@ export default function Main() {
     // 멤버 수정하는 함수 (빈 내용 요청시 삭제)
     const modifyHandler = (id, newContent) => {
         if (newContent.length !== 0)
-            console.log('수정 요청');
+            contentmodify(id, newContent)
+                .then(value => { setLists(value); });
         else
             removeHandler(id);
     }
