@@ -4,7 +4,7 @@ import ListComponent from '../Lists/ListComponent';
 import { useEffect, useState } from 'react';
 import ToastNotification from './ToastNotification';
 
-import { getlist } from '../../modules/todoapi';
+import { getlist, removelist } from '../../modules/todoapi';
 
 // api 주소 노출 방지를 위해 모듈화
 import apiUrl from '../../apiurl';
@@ -13,27 +13,22 @@ export default function Main() {
 
     // 할일 목록 배열
     const [lists, setLists] = useState([]);
+    const [removedMember, setRemovedMember] = useState([]);
+    const [toastState, setToastState] = useState(false);
 
     // 최초 실행 시 내용 받아오기
     useEffect(() => {
         getlist()
-            .then((value) => {
-                setLists(value);
-            });
+            .then((value) => { setLists(value); });
     }, []);
-
-    const [removedMember, setRemovedMember] = useState([]);
-    const [toastState, setToastState] = useState(false);
 
     // 삭제
     const removeHandler = (id) => {
+
+        setLists(lists.filter((list) => list.bookId != id));
         
-        fetch(`${apiUrl}/api/removelist/book?id=${id}`, { method : 'DELETE' })
-        .then(res => res.json())
-        .then(res => {
-            if (res.body.status === 'OK')
-                setLists(res.body.content);
-        });
+        removelist(id)
+            .then((value) => { setLists(value); });
 
         setToastState(true);
     };

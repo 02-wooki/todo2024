@@ -13,5 +13,19 @@ const getlist = async () => {
     return content;
 }
 
+const removelist = async (id) => {
 
-export { getlist };
+    var content;
+
+    await fetch(`${apiUrl}/api/removelist/book?id=${id}`, { method : 'DELETE' })
+        .then(res => res.json())
+        .then(res => {
+            if (res.body.status === 'OK')
+                content = res.body.content;
+        });
+
+    return content;
+}
+
+
+export { getlist, removelist };
