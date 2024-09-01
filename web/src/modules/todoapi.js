@@ -1,5 +1,6 @@
 import apiUrl from "../apiurl";
 
+// [get] 데이터 요청
 const getlist = async () => {
     var content;
 
@@ -13,6 +14,7 @@ const getlist = async () => {
     return content;
 }
 
+// [delete] 삭제
 const removelist = async (id) => {
 
     var content;
@@ -27,6 +29,7 @@ const removelist = async (id) => {
     return content;
 }
 
+// [get] 삭제 취소
 const recoverylist = async () => {
     
     var content;
@@ -41,6 +44,7 @@ const recoverylist = async () => {
     return content;
 }
 
+// [patch] 체크 상태 변경
 const checkboxmodify = async (id, checkstatus) => {
     
     var content;
@@ -55,5 +59,25 @@ const checkboxmodify = async (id, checkstatus) => {
     return content;
 }
 
+// [post] 삽입
+const addlist = async (newContent) => {
+    var content;
 
-export { getlist, removelist, recoverylist, checkboxmodify };
+    await fetch(`${apiUrl}/api/addlist`, {
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({ content: newContent })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if (res.body.status === 'OK')
+            content = res.body.content;
+    });
+
+    return content;
+}
+
+
+export { getlist, removelist, recoverylist, checkboxmodify, addlist };

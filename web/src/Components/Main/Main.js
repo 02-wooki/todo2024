@@ -4,7 +4,7 @@ import ListComponent from '../Lists/ListComponent';
 import { useEffect, useState } from 'react';
 import ToastNotification from './ToastNotification';
 
-import { checkboxmodify, getlist, recoverylist, removelist } from '../../modules/todoapi';
+import { addlist, checkboxmodify, getlist, recoverylist, removelist } from '../../modules/todoapi';
 
 // api 주소 노출 방지를 위해 모듈화
 import apiUrl from '../../apiurl';
@@ -26,8 +26,7 @@ export default function Main() {
 
         setLists(lists.filter((list) => list.bookId != id));
         
-        removelist(id)
-            .then((value) => { setLists(value); });
+        removelist(id);
 
         setToastState(true);
     };
@@ -55,18 +54,15 @@ export default function Main() {
 
     // 데이터 삽입
     const pushHandler = (newContent) => {
-        fetch(`${apiUrl}/api/addlist`, {
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify({ content: newContent })
-        })
-        .then(res => res.json())
-        .then(res => {
-            if (res.body.status === 'OK')
-                setLists(res.body.content);
-        });
+
+        const newlist = {
+            content : newContent
+        }
+        setLists(lists.concat(newlist));
+        
+        addlist(newContent)
+            .then(value => { setLists(value); });
+
     }
 
     // 멤버 수정하는 함수 (빈 내용 요청시 삭제)
