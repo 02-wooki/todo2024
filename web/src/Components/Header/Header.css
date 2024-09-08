@@ -63,6 +63,8 @@
         position: fixed;
         left: 55px;     top: 55px;
         width: 90px;    height: 90px;
+
+        transition: all ease 300ms;
     }
 
     .div-modal {
@@ -90,10 +92,43 @@
         left: 73px; top: 280px;
         animation-duration: 275ms;
     }
+
+    #opened-profile-background {
+        position: fixed;
+        z-index: 1;
+        top: 0px;       left: 0px;
+        width: 100vw;   height: 100vh;
+
+        backdrop-filter: blur(7px);
+    }
+    .profileOpen {
+        left: calc(50vw - 200px);   top: calc(50vh - 300px);
+        width: 400px;   height: 400px;
+    }
+    
+    #opened-profile-buttons-container {
+        position: fixed;
+        display: flex;  flex-direction: column;
+        
+        left: calc(50vw - 125px);   top: calc(50vh + 130px);
+        width: 250px;               height: 80px;
+
+        background-color: #fdfdfd;
+        border-radius: 20px;
+        box-shadow: 0px 0px 30px -10px #ccc;
+    }
+    .opened-profile-button {
+        flex-grow: 1;
+        z-index: 2;
+        cursor: pointer;
+
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+    }
 }
 
 .profile-pic {
-    z-index: 1;
+    z-index: 2;
     border-radius: 100%;
     object-fit: cover;
     cursor: pointer;
@@ -135,3 +170,8 @@
         transform: translateY(0%);
     }
 }
+
+.bottomGrayBorder {
+    border-bottom: 1px solid #ccc;
+}
+

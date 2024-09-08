@@ -8,6 +8,7 @@ import { addlist, checkboxmodify, contentmodify, getlist, recoverylist, removeli
 
 // api 주소 노출 방지를 위해 모듈화
 import apiUrl from '../../apiurl';
+import Header from '../Header/Header';
 
 export default function Main() {
 
@@ -82,6 +83,7 @@ export default function Main() {
 
     return (
         <>
+            <Header />
             <h1>Todo List</h1>
             <ListComponent
                 lists={lists}
