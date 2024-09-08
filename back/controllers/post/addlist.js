@@ -2,6 +2,9 @@ const mariadb = require('../../database/mariadb');
 
 const addlist = (req, res) => {
 
+    const now = new Date();
+    console.log(`ADD: '${req.body.content}' ${now}`)
+
     if (req.body.content.length === 0)
         req.send({ body : { status : 'NOT OK', content : 'request content length is 0' } });
 

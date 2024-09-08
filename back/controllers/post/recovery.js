@@ -1,6 +1,10 @@
 const mariadb = require('../../database/mariadb');
 
 const recovery = (req, res) => {
+
+    const now = new Date();
+    console.log(`RECOVERY request: ${now}`);
+
     mariadb.connect();
 
     mariadb.query(`insert into lists

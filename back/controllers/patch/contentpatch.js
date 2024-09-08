@@ -2,6 +2,9 @@ const mariadb = require('../../database/mariadb');
 
 const contentpatch = (req, res) => {
 
+    const now = new Date();
+    console.log(``);
+
     if (req.body.content.length !== 0) {
         mariadb.query(`update lists set content='${req.body.content}', updated_at=now() where bookId=${req.query.id}`, (err, rows) => {
             if (err)

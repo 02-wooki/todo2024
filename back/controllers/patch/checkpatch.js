@@ -1,6 +1,10 @@
 const mariadb = require('../../database/mariadb');
 
 const checkpatch = (req, res) => {
+
+    const now = new Date();
+    console.log(`CHECK: id ${req.query.id}, ${now}`);
+
     mariadb.connect();
 
     mariadb.query(`select checked from lists where bookId=${req.query.id};`, (err, rows) => {
